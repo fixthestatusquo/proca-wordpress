@@ -6,13 +6,13 @@ you need first to create an action on the [backoffice of proca](https://proca.fo
 
 Then on any of your campaign page (or blog post), you can simply add:
 
-## A petition button
+the first step is to build the action page (on proca)
 
-     [proca page=xxx]
+Once done:
      
-## A petition form
+## Add your action
 
-     [proca page=xxx mode=form]
+     [proca page=xxx action=form]
      
      
 

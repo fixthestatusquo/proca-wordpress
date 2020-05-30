@@ -27,8 +27,16 @@ add_shortcode('proca', 'proca_widget');
 function proca_widget( $atts = [], $content = null) {
   $atts = array_change_key_case((array)$atts, CASE_LOWER);
   $params ="";
+  $url = "https://widget.proca.foundation/d/";
+  if ($atts['action']) { // to default to a demo? or widget?
+    $url .= $atts['action'];
+    unset($atts['action']);
+  }
+  if ($atts['debug']) {
+    $url = "http://localhost:3000/static/js/bundle.js";
+  }
   foreach ($atts as $key => $value) 
     $params .= "data-".$key.'="'.$value.'"';
-  return '<div id="proca-form" /><script id="proca" src="https://widget.proca.foundation/static/js/main.0-1.js" '. $params . '></script>';
+  return '<div id="proca-form" /><script id="proca" src="'.$url.'" '. $params . '></script>';
 // data-mode="form" data-page="2"> </script>
 }
