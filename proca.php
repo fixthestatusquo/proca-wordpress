@@ -41,6 +41,23 @@ function proca_register_block() {
  
 }
 
+add_shortcode('proca-local', 'proca_local');
+
+function proca_local( $atts = [], $content = null) {
+  $atts = array_change_key_case((array)$atts, CASE_LOWER);
+  //$r ="<div id='app'>Loading...</div>";
+  $r ="<script>";
+  if ($atts['list']) {
+    $r .="window.proca_twitter_list='https://climateandjobs.eu/proca-tweet/data/".$atts['list'].".json';";
+  }
+  if ($atts['text']) {
+    $r .='window.proca_action_text="'.$atts['text'].'";';
+  }
+  $r .="</script>";
+  $app = file_get_contents('proca-tweet/embed.html');
+//  $r+="<script src='/proca-tweet/'></script>';
+  return $r.$app;
+}
 
 function proca_widget( $atts = [], $content = null) {
   $atts = array_change_key_case((array)$atts, CASE_LOWER);
