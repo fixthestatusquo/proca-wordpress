@@ -72,6 +72,6 @@ function proca_widget( $atts = [], $content = null) {
   }
   foreach ($atts as $key => $value) 
     $params .= "data-".$key.'="'.$value.'"';
-  return '<div id="proca-form" /><script id="proca" src="'.$url.'" '. $params . '></script>';
+  return '<div class="proca-widget" '.$params.'/><script id="proca" src="'.$url.'" '. $params . '></script>';
 // data-mode="form" data-page="2"> </script>
 }
