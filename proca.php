@@ -67,9 +67,9 @@ function proca_widget( $atts = [], $content = null) {
     $url .= $atts['action'];
     unset($atts['action']);
   }
-  if ($atts['debug']) {
-    $url = "http://localhost:3000/static/js/bundle.js";
-  }
+//  if ($atts['debug']) {
+//    $url = "http://localhost:3000/static/js/bundle.js";
+//  }
   foreach ($atts as $key => $value) 
     $params .= "data-".$key.'="'.$value.'"';
   return '<div class="proca-widget" '.$params.'/><script id="proca" src="'.$url.'" '. $params . '></script>';
