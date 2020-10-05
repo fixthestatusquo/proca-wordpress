@@ -41,37 +41,18 @@ function proca_register_block() {
  
 }
 
-add_shortcode('proca-local', 'proca_local');
-
-function proca_local( $atts = [], $content = null) {
-  $atts = array_change_key_case((array)$atts, CASE_LOWER);
-  //$r ="<div id='app'>Loading...</div>";
-  $r ="<script>";
-  if ($atts['list']) {
-    $r .="window.proca_twitter_list='https://climateandjobs.eu/proca-tweet/data/".$atts['list'].".json';";
-  }
-  if ($atts['text']) {
-    $r .='window.proca_action_text="'.$atts['text'].'";';
-  }
-  $r .="</script>";
-  $app = file_get_contents('proca-tweet/embed.html');
-//  $r+="<script src='/proca-tweet/'></script>';
-  return $r.$app;
-}
-
 function proca_widget( $atts = [], $content = null) {
-  $atts = array_change_key_case((array)$atts, CASE_LOWER);
   $params ="";
+  $errors ="";
   $url = "https://widget.proca.foundation/d/";
-  if ($atts['action']) { // to default to a demo? or widget?
-    $url .= $atts['action'];
-    unset($atts['action']);
+  $attributes = shortcode_atts(array('action' => 'demo','debug' => false),$atts,'proca');
+  $url .= urlencode($attributes['action']);
+  if ($attributes['debug']) {
+    $url = "http://localhost:3000/static/js/bundle.js";
   }
-//  if ($atts['debug']) {
-//    $url = "http://localhost:3000/static/js/bundle.js";
-//  }
+  unset($atts['action']);
+  unset($atts['debug']);
   foreach ($atts as $key => $value) 
     $params .= "data-".$key.'="'.$value.'"';
-  return '<div class="proca-widget" '.$params.'/><script id="proca" src="'.$url.'" '. $params . '></script>';
-// data-mode="form" data-page="2"> </script>
+  return '<div class="proca-widget" '.$params.'>Loading...</div><script id="proca" src="'.$url.'" '. $params . '></script>';
 }
