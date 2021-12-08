@@ -27,7 +27,7 @@ Mutation change($orgName:String!,$campaignName:String!,$title:String!) {
     name:$campaignName,
     title:$title,
     actionPages:[
-      {name:"beeeci/counter",locale:"en",extraSupporters:632154},
+      {name:"beeeci/counter",locale:"en",extraSupporters:632154, live: true},
     ]
   }) 
   {
